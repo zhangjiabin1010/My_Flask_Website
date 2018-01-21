@@ -1,0 +1,42 @@
+import requests
+from bs4 import BeautifulSoup
+#保存url列表为文件with open('a.txt', 'w') as f:
+def url_list():
+   for page in range(1,6):
+      urls = 'http://www.zdfans.com/zd423/page/'+str(page)
+      res = requests.get(urls)
+      content = res.text
+      soup = BeautifulSoup(content,"lxml")
+      list1=soup.find('ul',attrs={'class':'excerpt'})
+      for a_li in list1.find_all('li'):
+         a_href = a_li.find_all('a')
+         url = a_href[1]['href']
+         print(url)
+         content = contentparse(url)
+   return content
+
+
+# 解析文章页面  获取 content、time、title
+def contentparse(url):
+        res = requests.get(url)
+        content = res.text
+        soup = BeautifulSoup(content, 'lxml')
+        title = soup.find('h1', attrs={'class': 'meta-tit'}).find('a').getText()
+        time = soup.find('p', attrs={'class': 'meta-info'}).contents[0][1:11]
+        context = soup.find('div',attrs={'class':'entry'}).getText()
+        print(title)
+        print(time)
+        print(context)
+        return content
+
+
+
+
+        return content
+
+
+
+
+if __name__ == '__main__':
+    url_list()
+
