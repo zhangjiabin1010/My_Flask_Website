@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "referrer" content="no-referrer"/>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    <title>首页</title>
+    <style>
+        body{
+            background-image: url('../static/images/bg-0006.gif');
+        }
+        .entry {
+            font-size: 14px;
+            line-height: 26px;
+            word-break: break-all;
+            word-wrap: break-word;
+            margin: 0 auto;
+            width:800px;
+        }
+        .entry img{
+            width:800px;
+        }
+        .container{
+            font-size: 16px;
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+    {#        <li><a href="#">Link</a></li>#}
+
+            {% for n in navname %}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ n[0] }} <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    {% for m in mname %}
+                        {% if n[1] == m[1] %}
+{#                            点击菜单名，回调视图函数part,并传参m.link给函数part。#}
+                            <li><a href="{{ url_for('part',link=m.link) }}">{{ m[0] }}</a></li>
+
+                        {% endif %}
+                    {% endfor %}
+                  </ul>
+
+                </li>
+            {% endfor %}
+          </ul>
+          <form class="navbar-form navbar-left" action="{{ url_for('Search')}}">
+            <div class="form-group">
+              <input name="link" type="text" class="form-control" placeholder="搜索">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" style="color:#6E6E6E;"></span></button>
+          </form>
+
+          <ul class="nav navbar-nav navbar-right">
+              {% if user %}
+                  <li><a href="#">{{ user.username }}</a></li>
+                  <li><a href="{{ url_for('logout') }}">注销</a></li>
+              {% else %}
+                  <li><a data-toggle="modal" data-target="#login">登录</a></li>
+                  <li><a data-toggle="modal" data-target="#register">注册</a></li>
+              {% endif %}
+
+          </ul>
+
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+{#注册页面模态框#}
+    <div id="register" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-title">
+                        <h1 class="text-center">注册</h1>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" action="{{ url_for('regist') }}" method="post">
+                                <div class="form-group">
+                                    <label for="">用户名</label>
+                                    <input class="form-control" type="text" placeholder="6-15位字母或数字" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">密码</label>
+                                    <input class="form-control" type="password" placeholder="至少6位字母或数字" name = password1>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">再次输入密码</label>
+                                    <input class="form-control" type="password" placeholder="至少6位字母或数字" name = password2>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">邮箱</label>
+                                    <input class="form-control" type="email" placeholder="例如:123@123.com" name = email>
+                                </div>
+                                <div class="text-right">
+                                    <button class="btn btn-primary" type="submit">提交</button>
+                                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                </div>
+                                <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#登录页面模态框#}
+    <div id="login" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-title">
+                <h1 class="text-center">登录</h1>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" action="{{ url_for('login') }}" method="post">
+                        <div class="form-group">
+                            <label for="">用户名</label>
+                            <input class="form-control" type="text" placeholder="" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="">密码</label>
+                            <input class="form-control" type="password" placeholder="" name="password">
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">登录</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                        <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% block main %}
+
+{% endblock %}
+
+</body>
+</html>

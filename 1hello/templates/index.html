@@ -1,0 +1,235 @@
+{% extends 'Base.html' %}
+{% block main %}
+<script>
+{#    接收两个对应参数，转义文章内容#}
+    function insert(str,tit){
+        var s = "";
+        if(str.length == 0) return "";
+        s = str.replace(/&amp;/g,"&");
+        s = s.replace(/&lt;/g,"<");
+        s = s.replace(/&gt;/g,">");
+        s = s.replace(/&nbsp;/g," ");
+        s = s.replace(/&#39;/g,"\'");
+        s = s.replace(/&quot;/g,"\"");
+        s = s.replace(/&#34;/g,"\"");
+        {#设置#myModalabel中的内容为 tit #}
+        $("#myModalLabel").html(tit)
+        $(".modal-body").html(s)
+    }
+</script>
+<style>
+
+    .container{
+        width:70%;
+        height:auto;
+        margin: 0 auto;
+    }
+    .index-body1{
+        width:100%;
+        float:left;
+        height:auto;
+    }
+    .index-body2{
+        width:100%;
+        float:left;
+        height:auto;
+    }
+    .index-body3{
+        width:100%;
+        float:left;
+        height:auto;
+    }
+    .carousel img{
+        width:100%;
+        height:auto;
+    }
+    .panel{
+        width:48%;
+        margin:1%;
+        border:1px solid;
+        border-color:#FFFAFA;
+        float:left;
+    }
+    .panel a:hover {color:#6495ED;}
+    .panel-heading{
+        font-size: 16px;
+        font-style: inherit;
+        background-color:#E6E6E6;
+    }
+    .index-body3 ul li{
+        display:inline;
+        float:left;
+    }
+    .list-group a{
+        target:"_blank";
+    }
+    .list-group a:hover {color:#6495ED;}
+    .footer{
+        width:100%;
+        background-color: #E6E6E6;
+        height:auto;
+        float:left;
+    }
+    .footer-inner a {
+        font-size:13px;
+        color: black;
+    }
+
+</style>
+<div class="container">
+    <div class = "index-body1">
+        <div class="carousel slide" id="carousel-441426">
+            <ol class="carousel-indicators">
+                <li data-slide-to="0" data-target="#carousel-441426">&nbsp;</li>
+                <li class="active" data-slide-to="1" data-target="#carousel-441426">&nbsp;</li>
+                <li data-slide-to="2" data-target="#carousel-441426">&nbsp;</li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item"><a href="https://global.ishadowx.net/" target="_Blank"><img alt="" src="{{ url_for('static',filename='images/lunbo2.jpg') }}" /></a>
+                    <div class="carousel-caption" contenteditable="False">
+    {#                    <h3></h3>#}
+                        <p>分享免费SS代理帐号</p>
+                    </div>
+                </div>
+
+                <div class="item active"><img alt="" src="{{ url_for('static',filename='images/lunbo2.jpg') }}" />
+                    <div class="carousel-caption" contenteditable="False">
+
+                        <p>分享免费SS代理帐号</p>
+                    </div>
+                </div>
+
+                <div class="item"><img alt="" src="{{ url_for('static',filename='images/lunbo2.jpg') }}" />
+                    <div class="carousel-caption" contenteditable="False">
+
+
+                        <p>分享免费SS代理帐号</p>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" data-slide="prev" href="#carousel-441426"></a> <a class="right carousel-control" data-slide="next" href="#carousel-441426"></a>
+        </div>
+    </div>
+    <div class="index-body2">
+        <div class="panel panel-default-left">
+        <div class="panel-heading"><span class="glyphicon glyphicon-tasks" style="color:#6E6E6E;"></span> 热门软件</div>
+      <div class="panel-body">
+          <div class="list-group">
+                  <a href="https://sunbox.cc/firefox-sunbox-plus.html" target="_blank" class="list-group-item"><span class="badge" >--阳光盒子</span>火狐浏览器集成高效定制版</a>
+                  <a href="http://www.zdfans.com/7614.html" target="_blank" class="list-group-item"><span class="badge" >--ZD423</span>Cent Browser v3.2.4.23 正式版</a>
+                  <a href="http://www.zdfans.com/7229.html" target="_blank" class="list-group-item"><span class="badge" >--ZD423</span>百度网盘高速下载器 PanDownload</a>
+                  <a href="http://www.zdfans.com/791.html" target="_blank" class="list-group-item"><span class="badge" >--ZD423</span>谷歌浏览器v64 最新绿色便携版</a>
+                  <a href="http://www.zdfans.com/716.html" target="_blank" class="list-group-item"><span class="badge" >--ZD423</span>CCleaner Pro v5绿色特别版及增强版本</a>
+          </div>
+      </div>
+    </div>
+        <div class="panel panel-default-right">
+          <div class="panel-heading"><span class="glyphicon glyphicon-tasks" style="color:#6E6E6E;"></span> 热门资讯</div>
+          <div class="panel-body">
+              <div class="list-group">
+                  <a href="http://36kr.com/p/5120084.html" target="_blank" class="list-group-item"><span class="badge" >--36氪</span>太像作恶者的360，和太像受害者的B站</a>
+                  <a href="http://36kr.com/p/5118381.html" target="_blank" class="list-group-item"><span class="badge" >--36氪</span>这份 Windows 优化指南，拯救老电脑</a>
+                  <a href="http://36kr.com/p/5112685.html" target="_blank" class="list-group-item"><span class="badge" >--36氪</span>一张图看清编程语言发展史</a>
+                  <a href="http://36kr.com/p/5118381.html" target="_blank" class="list-group-item"><span class="badge" >--36氪</span>这份 Windows 优化指南，拯救老电脑</a>
+                  <a href="http://36kr.com/p/5118381.html" target="_blank" class="list-group-item"><span class="badge" >--36氪</span>这份 Windows 优化指南，拯救老电脑</a>
+
+              </div>
+
+          </div>
+    </div>
+    </div>
+    <div class="index-body3">
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <img src="{{ url_for('static',filename='images/index-1.jpg') }}" alt="...">
+              <div class="caption">
+                <h3>浏览器合集</h3>
+                <div class="list-group">
+                    {% for hot in hotsoft[:5] %}
+                        <a href="#" class="list-group-item " onclick="insert('{{ hot.iContext }}','{{ hot.iTitle }}')" data-toggle="modal" data-target="#myModal">{{ hot.iTitle }}</a>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <img src="{{ url_for('static',filename='images/index-2.jpg') }}" alt="...">
+              <div class="caption">
+                <h3>Windows必备</h3>
+                  {% for hot in hotsoft[5:10] %}
+                        <a href="#" class="list-group-item " onclick="insert('{{ hot.iContext }}','{{ hot.iTitle }}')" data-toggle="modal" data-target="#myModal">{{ hot.iTitle }}</a>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <img src="{{ url_for('static',filename='images/index-3.jpg') }}" alt="...">
+              <div class="caption">
+                <h3>最新资讯</h3>
+                  {% for hot in hotsoft[10:15] %}
+                        <a href="#" class="list-group-item " onclick="insert('{{ hot.iContext }}','{{ hot.iTitle }}')" data-toggle="modal" data-target="#myModal">{{ hot.iTitle }}</a>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="footer">
+        <blockquote class="blockquote-reverse">
+        <div class="footer-inner">
+           <a href="http://www.zdfans.com" target="_blank">zd423</a>&nbsp;&nbsp;
+           <a href="http://www.hrtsea.com" target="_blank">心海e站</a>&nbsp;&nbsp;
+           <a href="http://www.downg.com" target="_blank">绿软家园</a>&nbsp;&nbsp;
+           <a href="http://www.orsoon.com" target="_blank">未来软件园</a>&nbsp;&nbsp;
+           <a href="http://win10.ithome.com" target="_blank">Win10之家</a>&nbsp;&nbsp;
+           <a href="http://www.wmzhe.com" target="_blank">老D博客</a>&nbsp;&nbsp;
+           <a href="http://bbs.piaoyun.net" target="_blank">飘云社区</a>&nbsp;&nbsp;
+           <a href="http://www.dayanzai.me" target="_blank">大眼仔旭</a>&nbsp;&nbsp;
+           <a href="http://www.so-love.com" target="_blank">至爱分享</a>&nbsp;&nbsp;
+           <a href="http://mcool.appinn.me" target="_blank">Mcool音乐</a>&nbsp;&nbsp;
+           <a href="http://www.juanyunkeji.com" target="_blank">手机App开发</a>&nbsp;&nbsp;
+           <a href="http://www.xudoodoo.com" target="_blank">微信小程序</a>&nbsp;&nbsp;
+           <a href="http://www.lrshare.com" target="_blank">绿软分享吧</a>&nbsp;&nbsp;
+           <a href="http://www.flighty.cn" target="_blank">轻狂志</a>&nbsp;&nbsp;
+           <a href="https://www.itreping.com" target="_blank">IT热评</a>&nbsp;&nbsp;
+           <a href="https://www.wsmo.cn" target="_blank">小程序代理</a>&nbsp;&nbsp;
+           <a href="https://www.sysceo.com" target="_blank">系统总裁</a>&nbsp;&nbsp;
+           <a href="http://www.dajiangtai.com/course/51.do" target="_blank">数据分析师</a>&nbsp;&nbsp;
+           <a href="http://www.fishlee.net" target="_blank">鱼の后花园</a>&nbsp;&nbsp;
+           <a href="http://www.lite6.com" target="_blank">软件阁</a>&nbsp;&nbsp;
+           <a href="http://www.sd173.com" target="_blank">闪电软件园</a>&nbsp;&nbsp;
+           <a href="http://www.71down.com" target="_blank">北风软件下载</a>&nbsp;&nbsp;
+           <a href="https://app.rp2rp.com" target="_blank">App制作</a>&nbsp;&nbsp;
+           <a href="http://www.pn66.com" target="_blank">六六软件</a>&nbsp;&nbsp;
+
+        </div>
+        <footer>本站所有内容来源于以上网站，仅供学习使用。侵权立删</footer>
+        </blockquote>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document"style="width: 825px">
+    <div class="modal-content"style="width: 825px" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+{#            弹出的内容框#}
+      <div class="modal-body">
+
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'Base.html' %}
+{% block main %}
+    <script>
+{#    接收两个对应参数，转义文章内容#}
+    function insert(str,tit){
+        var s = "";
+        if(str.length == 0) return "";
+        s = str.replace(/&amp;/g,"&");
+        s = s.replace(/&lt;/g,"<");
+        s = s.replace(/&gt;/g,">");
+        s = s.replace(/&nbsp;/g," ");
+        s = s.replace(/&#39;/g,"\'");
+        s = s.replace(/&quot;/g,"\"");
+        s = s.replace(/&#34;/g,"\"");
+        {#设置#myModalabel中的内容为 tit #}
+        $("#myModalLabel").html(tit)
+        $(".modal-body").html(s)
+    }
+    </script>
+    <div class="entry">
+    <div class="list-group">
+        {% for con in content %}
+            <a href="#" class="list-group-item " onclick="insert('{{ con.aContext }}','{{ con.aTitle }}')" data-toggle="modal" data-target="#myModal">
+                <h4 class="list-group-item-heading"> {{ con.aTitle }}</h4><span class="label label-info">{{ con.aTime }}</span>&nbsp;&nbsp;<span class="label label-primary">{{ con.mName }}</span>
+            <p class="list-group-item-text" >{{ re.sub('</?\w+[^>]*>','',con.aContext)[0:150]+'...'}}</p>
+        </a>
+        {% endfor %}
+    </div>
+    {% import "_macros.html" as macros %}
+    {%if pagination%}
+        <div class="pagination">
+            {{ macros.pagination_widget(pagination,vf,link) }}
+        </div>
+    {% endif %}
+    </div>
+
+<!-- 内弹窗 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+      <div class="modal-dialog" role="document"style="width: 825px">
+        <div class="modal-content"style="width: 825px" >
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"></h4>
+          </div>
+{#            弹出的内容框#}
+          <div class="modal-body">
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{#    底部分页详细注释见_macros.html#}
+
+
+{% endblock %}
